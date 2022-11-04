@@ -14,12 +14,12 @@
 int ft_memcmp(const void *str1, const void *str2, size_t n)
 {
     unsigned int max;
-    char *s;
-    char *d;
+    unsigned char *s;
+    unsigned char *d;
 
     max = 0;
-    s = (char *) str1;
-    d = (char *) str2;
+    s = (unsigned char *) str1;
+    d = (unsigned char *) str2;
     if (n == 0)
     return(0);
     

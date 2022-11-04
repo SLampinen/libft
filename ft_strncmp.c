@@ -10,11 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_strncmp(const char *str1, const char *str2, int n)
+int ft_strncmp(const char *str1, const char *str2, unsigned int n)
 {
-    int max;
+    unsigned int max;
 
-    max = 0;
+    max = 1;
+    if (n == 0)
+        return(0);
     while (*str1 == *str2 && *str1 != '\0' && *str2 != '\0' && max < n)
     {
         str1++;

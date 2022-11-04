@@ -9,24 +9,29 @@
 /*   Updated: 2022/10/28 10:50:07 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#define size_t int 
-
+#define size_t unsigned int 
+int ft_strlen(char *s);
 size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
     {
         char *d;
         char *s;
-        int rv;
+        unsigned int rv;
+        int srclen;
+        int dstlen;
 
         rv = 0;
         d = dst;
         s = (char *) src;
-        while (d != '\0')
+        srclen = ft_strlen((char *)src);
+        if(dstsize == 0)
+            return(srclen);
+        while (d != '\0' && rv < dstsize)
         {
             d++;
             rv++;
         }
-        
-        while (rv < dstsize && d != '\0')
+        dstlen = rv;
+        while (rv < dstsize && s != '\0')
         {
             *d = *s;
             d++;
@@ -34,6 +39,5 @@ size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
             rv++; 
         }
         *d++ = '\0';
-        rv++;
-        return(rv);
+        return(dstlen + srclen);
     }
