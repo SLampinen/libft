@@ -32,14 +32,16 @@ char **ft_split(char const *s, char c)
     temp = (char *)s;
     count = 1;
     ind = 0;
-    while (temp != '\0')
+    if(!s)
+        return(NULL);
+    while (*temp != '\0')
     {
         if (*temp == c)
             count++;
         temp++;
     }
     if(count > 1)
-        if(!(array = malloc(count)))
+        if(!(array = malloc(count) + 1))
             return(NULL);
     count = 0;
     while (*s != '\0')
@@ -48,6 +50,7 @@ char **ft_split(char const *s, char c)
             array[count] = malloc(get_word_len((char *)s, c) + 1);
         if (*s == c)
         {
+            array[count][ind] = '\0';
             count++;
             ind = 0;
         }
