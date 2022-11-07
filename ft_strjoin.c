@@ -10,24 +10,32 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
+int ft_strlen(char *s);
 
-/*char *ft_strjoin(char const *s1, char const *s2)
+char *ft_strjoin(char const *s1, char const *s2)
 {
     char *str;
-    str = malloc(ft_strlen(s1) + ft_strlen(s2));
+    int inds;
+    int indd;
+
+    indd = 0;
+    inds = 0;
+    str = malloc(ft_strlen((char *) s1) + ft_strlen((char *) s2) + 1);
     if (!str)
         return(NULL);
-    while(s1 != '\0')
+    while(s1[inds] != '\0')
     {
-        str = s1;
-        str++;
-        s1++;
+        str[indd] = s1[inds];
+        indd++;
+        inds++;
     }
-    while (s2 != '\0')
+    inds = 0;
+    while (s2[inds] != '\0')
     {
-        str = s2;
-        str++;
-        s2++;
+        str[indd] = s2[inds];
+        inds++;
+        indd++;
     }
+    str[indd] = '\0';
     return(str);   
-}*/
+}

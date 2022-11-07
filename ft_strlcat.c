@@ -9,35 +9,28 @@
 /*   Updated: 2022/10/28 10:50:07 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#define size_t unsigned int 
 int ft_strlen(char *s);
-size_t ft_strlcat(char *dst, const char *src, size_t dstsize)
+unsigned int ft_strlcat(char *dst, const char *src, unsigned int dstsize)
     {
-        char *d;
         char *s;
-        unsigned int rv;
         int srclen;
-        int dstlen;
+        unsigned int inds;
+        unsigned int indd;
 
-        rv = 0;
-        d = dst;
+        inds = 0;
+        indd = 0;
         s = (char *) src;
         srclen = ft_strlen((char *)src);
         if(dstsize == 0)
             return(srclen);
-        while (d != '\0' && rv < dstsize)
+        while (dst[indd] && indd < dstsize)
+            indd++;
+        while (s[inds] && (indd + inds + 1) < dstsize)
         {
-            d++;
-            rv++;
+            dst[indd + inds] = s[inds];
+            inds++;
         }
-        dstlen = rv;
-        while (rv < dstsize && s != '\0')
-        {
-            *d = *s;
-            d++;
-            s++;
-            rv++; 
-        }
-        *d++ = '\0';
-        return(dstlen + srclen);
+        if(indd < dstsize)
+            dst[indd + inds] = '\0';
+        return(srclen + indd);
     }

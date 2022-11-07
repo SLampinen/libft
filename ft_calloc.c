@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
-#define size_t unsigned int
 void  ft_bzero(void *str, int len);
 
 void *ft_calloc(size_t count, size_t size)
@@ -21,6 +20,6 @@ void *ft_calloc(size_t count, size_t size)
         return(NULL);
     ptr = malloc(count * size);
     if(ptr)
-        ft_bzero(ptr, count * size);
+        ft_bzero(ptr, count);
     return(ptr);
 }

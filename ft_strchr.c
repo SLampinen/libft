@@ -10,25 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strchr(char *str, int c)
+char *ft_strchr(const char *str, int c)
 {
-    int end;
-    char *rv;
-    char d;
 
-    end = 0;
-    rv = (void *)0;
-    d = c;
-    while(end == 0)
+    char *s;
+    char *rv;
+    char nd;
+
+    nd = (char )c;
+    s = (char *)str;
+    rv = (char *)0;
+    while (*s != nd)
     {
-        if(*str == d)
-        {
-            end = 1;
-            *rv = *str;
-        }
-        if(*str == '\0')
-            end = 1;
-        str++;
+        if(!*s)
+            return(rv);
+        s++;
     }
-    return (rv);
+    return(s);
 }

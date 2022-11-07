@@ -18,17 +18,16 @@ int magnet(char *haystack, char *needle)
         if(*haystack != *needle)
             return(0);
         needle++;
+        haystack++;
     }
     return(1);
 }
 char *ft_strnstr(const char *haystack, const char *needle, unsigned int num)
 {
-    int indhs;
     char *hs;
     char *nd;
     unsigned int nlen;
 
-    indhs = 0;
     hs = (char *)haystack;
     nd = (char *)needle;
     nlen = (unsigned int)ft_strlen((char *)needle);
@@ -38,7 +37,7 @@ char *ft_strnstr(const char *haystack, const char *needle, unsigned int num)
     {
         if (*hs == nd[0])
             if (magnet(hs, nd))
-                return((char *)hs);
+                return(hs);
         hs++;
         num--;
     }

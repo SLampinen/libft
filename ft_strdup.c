@@ -10,17 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
+int ft_strlen(char *s);
 
-char *strdup(const char *str)
+char	*ft_strdup(const char *src)
 {
-    char *ptr;
+	char	*new;
+	int		i;
 
-    ptr = malloc(sizeof(str));
-    while (str != '\0')
-    {
-        *ptr = *str;
-        ptr++;
-        str++;
-    }
-    return(ptr);
+	i = 0;
+    new = malloc(ft_strlen((char *)src) + 1);
+	while (src[i])
+	{
+		new[i] = src[i];
+		i++;
+	}
+	new[i] = '\0';
+	return (new);
 }

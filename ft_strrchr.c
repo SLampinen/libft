@@ -10,32 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-char *ft_strrchr(char *str, int c)
+char *ft_strrchr(const char *str, int c)
 {
     int stop;
     char *rv;
     char d;
     int end;
+    char *s;
 
-    stop = 0;
-    rv = (void *)0;
     d = c;
+    s = (char *)str;
+    rv = (void *)0;
     end = 0;
-    while(*str != '\0')
+    stop = 0;
+    while(*s != '\0')
         {
-            str++;
+            s++;
             end++;
         }
     while(stop == 0)
     {
-        if(*str == d)
+        if(*s == d)
         {
             stop = 1;
-            rv = str;
+            rv = s;
         }
         if(end == 0)
             stop = 1;
-        str--;
+        s--;
         end--;
     }
     return (rv);
