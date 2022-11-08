@@ -1,17 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
-//#include "libft.h"
-#include <ctype.h>
+#include "libft.h"
 #include <string.h>
-int ft_strlen(char *s);
-char *ft_strnstr(const char *haystack, const char *needle, unsigned int len);
-int main(int argc, char **argv)
+#include <stdio.h>
+int main(void)
 {
-    if (argc == 1)
-        return(0);
-    char *ptr1 = ft_strnstr(argv[1],argv[2],atoi(argv[3]));
-    printf("%s\n", ptr1);
-    char *ptr2 = strnstr(argv[1],argv[2],atoi(argv[3]));
-    printf("%s\n", ptr2);
-    return(0);
+   int i =0;
+   char **array = ft_split("text1that1has1no11spaces", '1');
+   while(i < 7 && **array != '\0')
+   {
+      printf("%s ",array[i]);
+      i++;
+   }
+   printf("\n");
 }

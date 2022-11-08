@@ -10,17 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
-int ft_strlen(char *s);
+#include "libft.h"
 int is_in_set(char c, char *set)
 {
-    int i;
-
-    i = 0;
-    while (!set)
+    while (*set != '\0')
     {
-        if(c == set[i])
+        if(c == *set)
             return(1);
-        i++;
+        set++;
     }
     return(0);
 }
@@ -34,9 +31,9 @@ char *ft_strtrim(char const *s1, char const *set)
     i = 0;
     start = 0;
     end = ft_strlen((char *)s1);
-    if(!s1 || !set)
+    if(!s1)
         return(NULL);
-    while(s1[start] && is_in_set(s1[start], (char *)set))
+    while(s1[start] != '\0' && is_in_set(s1[start], (char *)set))
         start++;
     while(end > start && is_in_set(s1[end - 1], (char *) set))
         end--;
@@ -44,11 +41,7 @@ char *ft_strtrim(char const *s1, char const *set)
     if(str == NULL)
         return(NULL);
     while (start < end)
-    {
-        str[i] = s1[start];
-        i++;
-        start++;
-    }
+        str[i++] = s1[start++];
     str[i] = '\0';
     return(str);
 }

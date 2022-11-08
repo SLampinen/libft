@@ -10,6 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdlib.h>
+#include "libft.h"
+#include <stdio.h>
+void  array_zero(char **str, int len)
+{
+    char **c = str;
+
+    while(len-- > 0)
+        {
+            *c++ = 0;
+        }
+}
 int get_word_len(char *str, char c)
 {
     int res;
@@ -25,30 +36,33 @@ int get_word_len(char *str, char c)
 char **ft_split(char const *s, char c)
 {
     char **array;
-    int count;
     char *temp;
+    char *src;
+    int count;
     int ind;
 
     temp = (char *)s;
+    src = (char *)s;
     count = 1;
     ind = 0;
     if(!s)
         return(NULL);
     while (*temp != '\0')
     {
-        if (*temp == c)
+        if(*temp == c)
             count++;
         temp++;
     }
-    if(count > 1)
-        if(!(array = malloc(count) + 1))
-            return(NULL);
+    array = ft_calloc(count + 1, sizeof(int));
+    if(!array)
+        return(NULL);
+    array_zero(array, count + 1);
     count = 0;
-    while (*s != '\0')
+    while (*src != '\0')
     {
         if(!array[count])
-            array[count] = malloc(get_word_len((char *)s, c) + 1);
-        if (*s == c)
+            array[count] = malloc(get_word_len((char *)src, c) + 1);
+        if (*src == c)
         {
             array[count][ind] = '\0';
             count++;
@@ -56,11 +70,12 @@ char **ft_split(char const *s, char c)
         }
         else
         {
-            array[count][ind] = *s;
+            array[count][ind] = *src;
             ind++;
         }
-        s++;
+        src++;
     }
-    array[count + 1][0] = '\0';
+    array[count][ind] = '\0';
+    array[count + 1] = calloc(sizeof(char), 1);
     return(array);
 }
