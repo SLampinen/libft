@@ -6,39 +6,35 @@
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 14:21:18 by slampine          #+#    #+#             */
-/*   Updated: 2022/10/25 14:21:23 by slampine         ###   ########.fr       */
+/*   Updated: 2022/11/09 14:54:13 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-char *ft_strrchr(const char *str, int c)
+char	*ft_strrchr(const char *str, int c)
 {
-    int stop;
-    char *rv;
-    char d;
-    int end;
-    char *s;
+	int		stop;
+	char	d;
+	int		end;
+	char	*s;
 
-    d = c;
-    s = (char *)str;
-    rv = (void *)0;
-    end = 0;
-    stop = 0;
-    while(*s != '\0')
-        {
-            s++;
-            end++;
-        }
-    while(stop == 0)
-    {
-        if(*s == d)
-        {
-            stop = 1;
-            rv = s;
-        }
-        if(end == 0)
-            stop = 1;
-        s--;
-        end--;
-    }
-    return (rv);
+	d = (char )c;
+	s = (char *)str;
+	end = 0;
+	stop = 0;
+	while (*s != '\0')
+	{
+		s++;
+		end++;
+	}
+	while (stop == 0)
+	{
+		if (*s == d)
+			return (s);
+		if (end == 0)
+			stop = 1;
+		end--;
+		s--;
+	}
+	return ((char *)0);
 }

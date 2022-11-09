@@ -1,28 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 12:43:29 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/09 13:37:33 by slampine         ###   ########.fr       */
+/*   Created: 2022/11/08 16:02:46 by slampine          #+#    #+#             */
+/*   Updated: 2022/11/09 12:02:56 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *source, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char			*d;
-	unsigned char	*s;
+	char	*c;
 
-	d = dest;
-	s = (unsigned char *) source;
-	while (n--)
-	{
-		*d = *s;
-		d++;
-		s++;
-	}
-	return (dest);
+	c = ft_itoa(n);
+	ft_putstr_fd(c, fd);
 }

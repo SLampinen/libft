@@ -6,11 +6,10 @@
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/01 10:38:41 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/01 10:38:42 by slampine         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:59:30 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
-int ft_strlen(char *s);
+#include "libft.h"
 
 char	*ft_strdup(const char *src)
 {
@@ -18,7 +17,7 @@ char	*ft_strdup(const char *src)
 	int		i;
 
 	i = 0;
-    new = malloc(ft_strlen((char *)src) + 1);
+	new = malloc(ft_strlen((char *)src) + 1);
 	while (src[i])
 	{
 		new[i] = src[i];

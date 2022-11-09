@@ -1,41 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/02 13:15:50 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/09 11:18:26 by slampine         ###   ########.fr       */
+/*   Created: 2022/11/09 10:15:06 by slampine          #+#    #+#             */
+/*   Updated: 2022/11/09 11:49:24 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-char	*ft_substr(char const *s, size_t start, size_t len)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*new;
-	unsigned int	i;
-	unsigned int	sl;
+	char	*temp;
+	int		count;
+	char	*res;
 
-	i = 0;
-	sl = (unsigned int)ft_strlen((char *)s);
-	if (!s)
-		return (NULL);
-	if (sl < start)
+	count = 0;
+	temp = (char *)s;
+	while (*temp != '\0')
 	{
-		new = malloc(1);
-		new[0] = '\0';
-		return (new);
+		count++;
+		temp++;
 	}
-	new = malloc(len + 1);
-	if (!new)
-		return (NULL);
-	while (i < len && s[start] != '\0' && start < sl)
+	res = malloc(count + 1);
+	count = 0;
+	while (s[count] != '\0')
 	{
-		new[i] = s[start];
-		start++;
-		i++;
+		res[count] = f(count, s[count]);
+		count++;
 	}
-	new[i] = '\0';
-	return (new);
+	res[count] = '\0';
+	return (res);
 }

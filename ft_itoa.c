@@ -9,36 +9,46 @@
 /*   Updated: 2022/11/02 15:31:14 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/*char *ft_itoa(int n)
+#include "libft.h"
+char *ft_itoa(int n)
 {
-    char str[33];
+    char *str;
+    int count;
+    unsigned int temp;
     int sign;
-    int index;
-    int iend;
-    char temp;
-    
-    sign = 1;
-    index = 33;
-    iend = 33;
+    int ismin;
+
+    ismin = 0;
+    count = 0;
+    sign = 0;
+    temp = n;
     if(n < 0)
+    {
         sign = -1;
-    while(n != 0)
+        if(n != 0 && ((sign * n) == n))
+            ismin = 1;
+        count++;
+        n = sign * (n + ismin);
+        temp = n;
+    }  
+    while(temp > 9)
     {
-        str[index] = (n % 10 - '0');
-        index--;
-        n = (n - (n % 10)) / 10;
+        temp = temp / 10;
+        count++;
     }
-    index = 0;
+    if(!(str = malloc(count + 1)))
+        return(NULL);   
+    str[count + 1] = '\0';
     if(sign == -1)
-        index = 1;
-    while(index < iend)
+        str[0] = '-';
+    while(count + sign >= 0)
     {
-        temp = str[index];
-        str[index] = str[iend];
-        str[iend] = temp;
-        index++;
-        iend--;
+        str[count] = n % 10 + '0';
+        if(ismin && count == 10)
+            str[count] = 8 + '0';
+        count--;
+        temp = n % 10;
+        n = (n - temp) / 10;
     }
     return(str);
-}*/
+}

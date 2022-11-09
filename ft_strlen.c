@@ -6,18 +6,17 @@
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:07:37 by slampine          #+#    #+#             */
-/*   Updated: 2022/10/25 10:07:39 by slampine         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:50:43 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-int ft_strlen(char *s)
-    {
-        int len;
+int	ft_strlen(char *s)
+{
+	int	len;
 
-        len = 0;
-        while(s[len] != '\0')
-        {
-            len++;
-        }
-        return(len);
-    }
+	len = 0;
+	while (s[len] != '\0')
+		len++;
+	return (len);
+}

@@ -6,13 +6,13 @@
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:58:56 by slampine          #+#    #+#             */
-/*   Updated: 2022/10/26 14:36:39 by slampine         ###   ########.fr       */
+/*   Updated: 2022/11/09 11:07:58 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_toupper(int c)
+int	ft_toupper(int c)
 {
-    if(c >= 'a' && c <= 'z')
-        c = c - 32;
-    return (c);
+	if (c >= 'a' && c <= 'z')
+		c = c - 32;
+	return (c);
 }

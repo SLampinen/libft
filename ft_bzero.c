@@ -6,16 +6,16 @@
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 11:01:22 by slampine          #+#    #+#             */
-/*   Updated: 2022/10/25 11:01:25 by slampine         ###   ########.fr       */
+/*   Updated: 2022/11/09 12:23:00 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "libft.h"
 
-void  ft_bzero(void *str, int len)
+void	ft_bzero(void *str, int len)
 {
-    char *c = str;
+	char	*c;
 
-    while(len-- > 0)
-        {
-            *c++ = 0;
-        }
+	c = str;
+	while (len-- > 0)
+		*c++ = 0;
 }
