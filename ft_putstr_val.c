@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_putstr_val.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 10:16:20 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/09 12:06:08 by slampine         ###   ########.fr       */
+/*   Created: 2022/12/02 13:52:49 by slampine          #+#    #+#             */
+/*   Updated: 2022/12/02 13:52:50 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *str, int val, size_t len)
+int	ft_putstr_val(char *s)
 {
-	char	*c;
+	int	ret;
 
-	c = str;
-	while (len-- > 0)
-		*c++ = val;
-	return (str);
+	ret = 0;
+	if (!s)
+	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
+	while (*s != '\0')
+	{
+		ft_putchar_val(*s);
+		s++;
+		ret++;
+	}
+	return (ret);
 }

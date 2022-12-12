@@ -1,25 +1,42 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: srclenampine <marvin@42.fr>                    +#+  +:+       +#+    */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/02 13:15:50 by srclenampine          #+#    #+#         */
+/*   Updated: 2022/11/11 12:05:37 by slampine         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "libft.h"
+
+static size_t	ft_min(int a, int b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char			*new;
-	unsigned int	i;
-	unsigned int	sl;
+	char	*new;
+	size_t	i;
+	size_t	srclen;
 
 	i = 0;
-	sl = (unsigned int)ft_strlen((char *)s);
 	if (!s)
 		return (NULL);
-	if (sl < start)
+	srclen = ft_strlen((char *)s);
+	if (srclen < start)
 	{
-		new = malloc(1);
-		new[0] = '\0';
+		new = ft_calloc(1, sizeof(char *));
 		return (new);
 	}
-	new = malloc(len + 1);
+	new = malloc((ft_min(len, srclen - start) + 1));
 	if (!new)
 		return (NULL);
-	while (i < len && s[start] != '\0' && start < sl)
+	while (i < len && s[start] != '\0')
 	{
 		new[i] = s[start];
 		start++;

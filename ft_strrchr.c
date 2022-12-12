@@ -9,7 +9,6 @@
 /*   Updated: 2022/11/09 14:54:13 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
 char	*ft_strrchr(const char *str, int c)
 {

@@ -18,6 +18,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*res;
 
 	count = 0;
+	if (!s)
+		return (0);
 	temp = (char *)s;
 	while (*temp != '\0')
 	{
@@ -25,6 +27,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		temp++;
 	}
 	res = malloc(count + 1);
+	if (!res)
+		return (0);
 	count = 0;
 	while (s[count] != '\0')
 	{

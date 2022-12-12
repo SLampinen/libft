@@ -1,22 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_puthex_val.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 10:16:20 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/09 12:06:08 by slampine         ###   ########.fr       */
+/*   Created: 2022/12/05 10:16:17 by slampine          #+#    #+#             */
+/*   Updated: 2022/12/12 10:47:48 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *str, int val, size_t len)
+int	ft_puthex_val(int n, int caps)
 {
-	char	*c;
+	int				ret;
+	int				rem;
+	unsigned int	abs;
 
-	c = str;
-	while (len-- > 0)
-		*c++ = val;
-	return (str);
+	rem = 0;
+	ret = 0;
+	abs = n;
+	if (n < 0)
+		abs = UINT_MAX + n + 1;
+	if (abs >= 16)
+	{
+		ret += ft_puthex_val(abs / 16, caps);
+		ret += ft_puthex_val(abs % 16, caps);
+	}
+	else if (abs > 9)
+	{
+		if (caps)
+			ret += ft_putchar_val(abs + '7');
+		else
+			ret += ft_putchar_val(abs + 'W');
+	}
+	else
+		ret += ft_putchar_val(abs + '0');
+	return (ret);
 }

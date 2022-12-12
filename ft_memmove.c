@@ -11,13 +11,15 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, int len)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
 	char	*d;
 	char	*s;
 	char	*lastd;
 	char	*lasts;
 
+	if (!dest && !src)
+		return (NULL);
 	d = dest;
 	s = (char *)src;
 	if (d < s)

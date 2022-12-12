@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_putptr_val.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 10:16:20 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/09 12:06:08 by slampine         ###   ########.fr       */
+/*   Created: 2022/12/07 12:56:18 by slampine          #+#    #+#             */
+/*   Updated: 2022/12/12 10:35:51 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *str, int val, size_t len)
+int	ft_putptr_val(unsigned long long n, int ft)
 {
-	char	*c;
+	int	ret;
 
-	c = str;
-	while (len-- > 0)
-		*c++ = val;
-	return (str);
+	ret = 0;
+	if (ft)
+		ret += ft_putstr_val("0x");
+	if (n >= 16)
+	{
+		ret += ft_putptr_val(n / 16, 0);
+		ret += ft_putptr_val(n % 16, 0);
+	}
+	else if (n > 9)
+		ret += ft_putchar_val(n + 'W');
+	else
+		ret += ft_putchar_val(n + '0');
+	return (ret);
 }

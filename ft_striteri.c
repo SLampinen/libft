@@ -9,7 +9,6 @@
 /*   Updated: 2022/11/09 11:58:26 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
 void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
@@ -17,6 +16,8 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 	int		i;
 
 	i = 0;
+	if (!s || !f)
+		return ;
 	temp = (char *)s;
 	while (*temp != '\0')
 	{

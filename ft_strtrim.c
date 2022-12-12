@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	is_in_set(char c, char *set)
+static int	is_in_set(char c, char *set)
 {
 	while (*set != '\0')
 	{
@@ -31,9 +31,9 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	i = 0;
 	start = 0;
-	end = ft_strlen((char *)s1);
 	if (!s1)
 		return (NULL);
+	end = ft_strlen((char *)s1);
 	while (s1[start] != '\0' && is_in_set(s1[start], (char *)set))
 		start++;
 	while (end > start && is_in_set(s1[end - 1], (char *) set))

@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/26 12:43:29 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/09 13:37:33 by slampine         ###   ########.fr       */
+/*   Created: 2022/11/14 13:07:49 by slampine          #+#    #+#             */
+/*   Updated: 2022/11/15 10:36:45 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memcpy(void *dest, const void *source, size_t n)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char			*d;
-	unsigned char	*s;
+	t_list	*firstnode;
+	t_list	*newnode;
 
-	if ((!dest && !source) && n > 0)
+	if (!lst || !f || !del)
 		return (NULL);
-	d = dest;
-	s = (unsigned char *) source;
-	while (n--)
+	firstnode = ft_lstnew(f(lst->content));
+	if (!firstnode)
+		return (NULL);
+	lst = lst->next;
+	while (lst)
 	{
-		*d = *s;
-		d++;
-		s++;
+		newnode = ft_lstnew(f(lst->content));
+		if (!newnode)
+		{
+			ft_lstclear(&firstnode, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&firstnode, newnode);
+		lst = lst->next;
 	}
-	return (dest);
+	return (firstnode);
 }

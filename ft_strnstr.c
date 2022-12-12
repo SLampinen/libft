@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-int	magnet(char *haystack, char *needle)
+static int	magnet(char *haystack, char *needle)
 {
 	while (*needle != '\0')
 	{
@@ -29,6 +29,8 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t num)
 	char			*nd;
 	unsigned int	nlen;
 
+	if (haystack == NULL && num == 0)
+		return (NULL);
 	hs = (char *)haystack;
 	nd = (char *)needle;
 	nlen = (unsigned int)ft_strlen((char *)needle);

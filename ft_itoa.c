@@ -6,49 +6,49 @@
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:31:12 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/02 15:31:14 by slampine         ###   ########.fr       */
+/*   Updated: 2022/11/11 10:33:00 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
-char *ft_itoa(int n)
-{
-    char *str;
-    int count;
-    unsigned int temp;
-    int sign;
-    int ismin;
 
-    ismin = 0;
-    count = 0;
-    sign = 0;
-    temp = n;
-    if(n < 0)
-    {
-        sign = -1;
-        if(n != 0 && ((sign * n) == n))
-            ismin = 1;
-        count++;
-        n = sign * (n + ismin);
-        temp = n;
-    }  
-    while(temp > 9)
-    {
-        temp = temp / 10;
-        count++;
-    }
-    if(!(str = malloc(count + 1)))
-        return(NULL);   
-    str[count + 1] = '\0';
-    if(sign == -1)
-        str[0] = '-';
-    while(count + sign >= 0)
-    {
-        str[count] = n % 10 + '0';
-        if(ismin && count == 10)
-            str[count] = 8 + '0';
-        count--;
-        temp = n % 10;
-        n = (n - temp) / 10;
-    }
-    return(str);
+static int	get_digits(int n)
+{
+	int	i;
+
+	i = 0;
+	while (n)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	char			*str;
+	int				digits;
+	unsigned int	abs_num;
+
+	digits = get_digits(n);
+	if (digits == 0)
+		digits++;
+	abs_num = n;
+	if (n < 0)
+	{
+		abs_num = -1 * n;
+		digits++;
+	}
+	str = malloc(digits + 1);
+	if (!str)
+		return (NULL);
+	str[digits] = '\0';
+	while (digits--)
+	{
+		str[digits] = abs_num % 10 + '0';
+		abs_num = abs_num / 10;
+	}
+	if (n < 0)
+		str[0] = '-';
+	return (str);
 }

@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 10:16:20 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/09 12:06:08 by slampine         ###   ########.fr       */
+/*   Created: 2022/11/14 12:47:16 by slampine          #+#    #+#             */
+/*   Updated: 2022/11/15 10:35:16 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *str, int val, size_t len)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	char	*c;
-
-	c = str;
-	while (len-- > 0)
-		*c++ = val;
-	return (str);
+	if (lst != NULL && new != NULL)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
 }

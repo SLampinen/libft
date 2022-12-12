@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 #include "libft.h"
 
-void	ft_bzero(void *str, int len)
+void	ft_bzero(void *str, size_t len)
 {
 	char	*c;
 

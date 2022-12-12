@@ -6,10 +6,20 @@
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:32:39 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/10 12:18:04 by slampine         ###   ########.fr       */
+/*   Updated: 2022/11/11 12:28:14 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
+
+static void	free_array(char **array, int i)
+{
+	while (i >= 0)
+	{
+		free(array[i]);
+		i--;
+	}
+	free (array);
+}
 
 static char	*dupl_word(const char *str, int start, int finish)
 {
@@ -18,6 +28,8 @@ static char	*dupl_word(const char *str, int start, int finish)
 
 	i = 0;
 	word = malloc((finish - start + 1) * sizeof(char));
+	if (!word)
+		return (NULL);
 	while (start < finish)
 		word[i++] = str[start++];
 	word[i] = '\0';
@@ -26,44 +38,65 @@ static char	*dupl_word(const char *str, int start, int finish)
 
 static int	count_words(char *str, char c)
 {
-	int	res;
 	int	i;
+	int	trigger;
 
-	i = 1;
-	res = 0;
-	while (str[i] != '\0')
+	i = 0;
+	trigger = 0;
+	while (*str)
 	{
-		if (str[i] == c && !(str[i + 1] == c || str[1] == '\0'))
-			res++;
-		i++;
+		if (*str != c && trigger == 0)
+		{
+			trigger = 1;
+			i++;
+		}
+		else if (*str == c)
+			trigger = 0;
+		str++;
 	}
-	return (res);
+	return (i);
+}
+
+static char	**do_split(char **array, char *str, char c)
+{
+	int		wordnum;
+	int		start;
+	size_t	end;
+
+	start = -1;
+	end = 0;
+	wordnum = 0;
+	while (end <= ft_strlen(str))
+	{
+		if (str[end] != c && start == -1)
+			start = end;
+		else if ((str[end] == c || end == ft_strlen(str)) && start >= 0)
+		{
+			array[wordnum++] = dupl_word(str, start, end);
+			if (!array[wordnum - 1])
+			{
+				free_array(array, wordnum);
+				return (NULL);
+			}
+			start = -1;
+		}
+		end++;
+	}
+	array[wordnum] = 0;
+	return (array);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**array;
-	int		wordnum;
-	int		indstr;
-	int		iend;
 
-	indstr = -1;
-	iend = 0;
-	wordnum = 0;
-	array = malloc((count_words((char *)s, c) + 1) * sizeof(char *));
-	if (!s || !array)
+	if (!s)
 		return (0);
-	while (iend <= ft_strlen((char *)s))
-	{
-		if (s[iend] != c && indstr == -1)
-			indstr = iend;
-		else if ((s[iend] == c || iend == ft_strlen((char *)s)) && indstr >= 0)
-		{
-			array[wordnum++] = dupl_word(s, indstr, iend);
-			indstr = -1;
-		}
-		iend++;
-	}
-	array[wordnum] = 0;
+	array = malloc((count_words((char *)s, c) + 1) * sizeof(char *));
+	if (!array)
+		return (0);
+	array = do_split(array, (char *)s, c);
+	if (!array)
+		return (0);
 	return (array);
 }

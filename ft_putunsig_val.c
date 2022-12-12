@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_putunsig_val.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: slampine <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 10:16:20 by slampine          #+#    #+#             */
-/*   Updated: 2022/11/09 12:06:08 by slampine         ###   ########.fr       */
+/*   Created: 2022/12/05 12:52:53 by slampine          #+#    #+#             */
+/*   Updated: 2022/12/12 10:33:36 by slampine         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void	*ft_memset(void *str, int val, size_t len)
+int	ft_putunsig_val(int n)
 {
-	char	*c;
+	unsigned int	abs_num;
+	int				ret;
 
-	c = str;
-	while (len-- > 0)
-		*c++ = val;
-	return (str);
+	abs_num = n;
+	ret = 0;
+	if (n < 0)
+		abs_num = UINT_MAX + n + 1;
+	if (abs_num >= 10)
+	{
+		ret += ft_putnbr_val(abs_num / 10);
+		ret += ft_putnbr_val(abs_num % 10);
+	}
+	else
+		ret += ft_putchar_val(abs_num + '0');
+	return (ret);
 }
